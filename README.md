@@ -120,7 +120,7 @@ Las cuentas y los perfiles se guardan en Firebase (gratis para este uso).
    pegar el contenido de `app/firestore.rules` y publicar.
 4. *Configuración del proyecto > Tus apps > Agregar app Web* (`</>`). Copiar los valores
    de `firebaseConfig`.
-5. En la carpeta `app/`, copiar `.env.example` como `.env` y completar los valores.
+5. Copiar esos valores en `app/src/services/firebase.js` (objeto `firebaseConfig`).
 
 ### Ejecutar la app
 

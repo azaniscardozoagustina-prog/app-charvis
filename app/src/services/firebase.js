@@ -4,14 +4,16 @@ import { getFirestore } from 'firebase/firestore';
 import { Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// Los valores se leen del archivo .env (ver .env.example y el README).
+// Configuración de la app web "charvis web" del proyecto de Firebase.
+// Estos valores no son secretos: van dentro de cualquier app que use Firebase;
+// los datos se protegen con las reglas de firestore.rules.
 const firebaseConfig = {
-  apiKey: process.env.EXPO_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.EXPO_PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.EXPO_PUBLIC_FIREBASE_APP_ID,
+  apiKey: 'AIzaSyDb9uLh9t_ISY0TVx-2oP5B7V4U4JeBgGc',
+  authDomain: 'charvis-4f961.firebaseapp.com',
+  projectId: 'charvis-4f961',
+  storageBucket: 'charvis-4f961.firebasestorage.app',
+  messagingSenderId: '137829277986',
+  appId: '1:137829277986:web:52b7fb8d4fa6a7e4e1457b',
 };
 
 export const isFirebaseConfigured = Boolean(firebaseConfig.apiKey && firebaseConfig.projectId);

@@ -4,6 +4,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { notify } from '../components/notify';
 import { authErrorMessage, useAuth } from '../context/AuthContext';
 import { Button, Field, colors, styles } from '../components/ui';
+import { configTag } from '../services/firebase';
+import appConfig from '../../app.json';
 
 export default function AuthScreen() {
   const { signIn, signUp, resetPassword } = useAuth();
@@ -93,6 +95,9 @@ export default function AuthScreen() {
               <Text style={{ color: colors.primary, fontWeight: '700' }}>{isRegister ? 'Ingresá' : 'Registrate'}</Text>
             </Text>
           </Pressable>
+          <Text style={{ color: colors.muted, fontSize: 11, textAlign: 'center', marginTop: 32 }}>
+            Versión {appConfig.expo.version} · {configTag}
+          </Text>
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>

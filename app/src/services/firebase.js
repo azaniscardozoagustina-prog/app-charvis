@@ -16,6 +16,9 @@ const firebaseConfig = {
   appId: '1:137829277986:web:52b7fb8d4fa6a7e4e1457b',
 };
 
+// Se muestra en la pantalla de inicio para verificar qué configuración tiene la app.
+export const configTag = `clave …${firebaseConfig.apiKey.slice(-4)}`;
+
 export const isFirebaseConfigured = Boolean(firebaseConfig.apiKey && firebaseConfig.projectId);
 
 function createAuth(app) {

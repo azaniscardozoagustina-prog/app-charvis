@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Alert, KeyboardAvoidingView, Platform, ScrollView, Text, View } from 'react-native';
+import { KeyboardAvoidingView, Platform, ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { notify } from '../components/notify';
 import { useAuth } from '../context/AuthContext';
 import { EMPTY_PROFILE, validateProfile } from '../services/profile';
 import { Button, Chips, Field, YesNo, styles } from '../components/ui';
@@ -27,7 +28,7 @@ export default function ProfileFormScreen({ onDone }) {
     const errs = validateProfile(form);
     setErrors(errs);
     if (Object.keys(errs).length) {
-      Alert.alert('Faltan datos', 'Completá todos los campos marcados en rojo.');
+      notify('Faltan datos', 'Completá todos los campos marcados en rojo.');
       return;
     }
     setBusy(true);
@@ -35,7 +36,7 @@ export default function ProfileFormScreen({ onDone }) {
       await updateProfile(clean(form));
       onDone?.();
     } catch {
-      Alert.alert('Error', 'No se pudieron guardar los datos. Revisá tu conexión.');
+      notify('Error', 'No se pudieron guardar los datos. Revisá tu conexión.');
     } finally {
       setBusy(false);
     }

@@ -1,6 +1,7 @@
 import { initializeApp, getApps, getApp } from 'firebase/app';
 import { initializeAuth, getAuth, getReactNativePersistence } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
+import { Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Los valores se leen del archivo .env (ver .env.example y el README).
@@ -16,6 +17,8 @@ const firebaseConfig = {
 export const isFirebaseConfigured = Boolean(firebaseConfig.apiKey && firebaseConfig.projectId);
 
 function createAuth(app) {
+  // En el navegador Firebase ya guarda la sesión por su cuenta.
+  if (Platform.OS === 'web') return getAuth(app);
   try {
     // Mantiene la sesión iniciada entre aperturas de la app.
     return initializeAuth(app, { persistence: getReactNativePersistence(AsyncStorage) });

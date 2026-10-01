@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Alert, KeyboardAvoidingView, Platform, Pressable, ScrollView, Text } from 'react-native';
+import { KeyboardAvoidingView, Platform, Pressable, ScrollView, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { notify } from '../components/notify';
 import { authErrorMessage, useAuth } from '../context/AuthContext';
 import { Button, Field, colors, styles } from '../components/ui';
 
@@ -34,7 +35,7 @@ export default function AuthScreen() {
     if (!/^\S+@\S+\.\S+$/.test(email.trim())) return setError('Escribí tu correo para recuperar la contraseña.');
     try {
       await resetPassword(email);
-      Alert.alert('Correo enviado', 'Revisá tu bandeja de entrada para crear una nueva contraseña.');
+      notify('Correo enviado', 'Revisá tu bandeja de entrada para crear una nueva contraseña.');
     } catch (e) {
       setError(authErrorMessage(e));
     }

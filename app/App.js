@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ActivityIndicator, Pressable, Text, View } from 'react-native';
+import { ActivityIndicator, Platform, Pressable, Text, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { AuthProvider, useAuth } from './src/context/AuthContext';
@@ -12,15 +12,18 @@ import { Button, colors, styles } from './src/components/ui';
 
 export default function App() {
   return (
-    <SafeAreaProvider>
+    <SafeAreaProvider style={{ backgroundColor: colors.bg }}>
       <StatusBar style="light" />
-      {isFirebaseConfigured ? (
-        <AuthProvider>
-          <Root />
-        </AuthProvider>
-      ) : (
-        <Message text="Falta configurar Firebase. Copiá .env.example a .env, completá las claves y reiniciá la app (ver README)." />
-      )}
+      {/* En la computadora se muestra centrada, con ancho de celular. */}
+      <View style={Platform.OS === 'web' ? { flex: 1, width: '100%', maxWidth: 480, alignSelf: 'center' } : { flex: 1 }}>
+        {isFirebaseConfigured ? (
+          <AuthProvider>
+            <Root />
+          </AuthProvider>
+        ) : (
+          <Message text="Falta configurar Firebase. Copiá .env.example a .env, completá las claves y reiniciá la app (ver README)." />
+        )}
+      </View>
     </SafeAreaProvider>
   );
 }

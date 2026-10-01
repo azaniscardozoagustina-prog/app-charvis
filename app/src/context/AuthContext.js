@@ -70,7 +70,14 @@ export function authErrorMessage(e) {
       return 'Sin conexión a internet.';
     case 'auth/too-many-requests':
       return 'Demasiados intentos. Probá de nuevo en unos minutos.';
+    case 'auth/operation-not-allowed':
+    case 'auth/configuration-not-found':
+      return 'El inicio con correo no está habilitado en Firebase (Authentication > Método de acceso).';
+    case 'auth/api-key-not-valid.-please-pass-a-valid-api-key.':
+    case 'auth/invalid-api-key':
+      return 'La API_KEY del archivo .env es incorrecta.';
     default:
-      return 'Ocurrió un error. Intentá de nuevo.';
+      // Mostramos el código para poder diagnosticar el problema.
+      return `Ocurrió un error (${e?.code || e?.message || 'desconocido'}). Intentá de nuevo.`;
   }
 }

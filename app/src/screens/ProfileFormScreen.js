@@ -7,7 +7,6 @@ import { EMPTY_PROFILE, validateProfile } from '../services/profile';
 import { Button, Chips, Field, YesNo, styles } from '../components/ui';
 
 const BLOOD_TYPES = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', '0+', '0-', 'No sé'];
-const VEHICLE_TYPES = ['Moto', 'Auto', 'Bicicleta', 'Otro'];
 
 // Formulario obligatorio: se muestra al iniciar sesión hasta que esté completo.
 // También se reutiliza para editar los datos (prop `onDone`).
@@ -60,14 +59,13 @@ export default function ProfileFormScreen({ onDone }) {
           <Field label="Fecha de nacimiento *" value={form.birthDate} onChangeText={(v) => set('birthDate', formatDate(v))} keyboardType="number-pad" placeholder="DD/MM/AAAA" maxLength={10} error={errors.birthDate} />
           <Chips label="Grupo sanguíneo" options={BLOOD_TYPES} value={form.bloodType} onChange={(v) => set('bloodType', v)} />
 
-          <Text style={styles.section}>VEHÍCULO</Text>
-          <Chips label="Tipo" options={VEHICLE_TYPES} value={form.vehicle.type} onChange={(v) => set('vehicle.type', v)} />
+          <Text style={styles.section}>MOTO</Text>
           <Field label="Marca y modelo *" value={form.vehicle.brandModel} onChangeText={(v) => set('vehicle.brandModel', v)} error={errors.vehicleBrandModel} />
           <Field label="Patente *" value={form.vehicle.plate} onChangeText={(v) => set('vehicle.plate', v.toUpperCase())} autoCapitalize="characters" error={errors.vehiclePlate} />
 
           <Text style={styles.section}>SEGUROS</Text>
           <InsuranceBlock title="¿Tenés seguro de vida? *" value={form.lifeInsurance} set={(k, v) => set(`lifeInsurance.${k}`, v)} errors={errors} errKey="lifeInsurance" />
-          <InsuranceBlock title="¿Tenés seguro del vehículo? *" value={form.vehicleInsurance} set={(k, v) => set(`vehicleInsurance.${k}`, v)} errors={errors} errKey="vehicleInsurance" />
+          <InsuranceBlock title="¿Tenés seguro de la moto? *" value={form.vehicleInsurance} set={(k, v) => set(`vehicleInsurance.${k}`, v)} errors={errors} errKey="vehicleInsurance" />
 
           <Text style={styles.section}>CONTACTO DE EMERGENCIA</Text>
           <Field label="Nombre *" value={form.emergencyContact.name} onChangeText={(v) => set('emergencyContact.name', v)} error={errors.ecName} />

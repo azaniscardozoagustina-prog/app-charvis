@@ -20,8 +20,7 @@ export default function ProfileScreen({ onEdit }) {
         <InfoRow label="Grupo sanguíneo" value={profile.bloodType} />
       </Card>
 
-      <Card title="VEHÍCULO">
-        <InfoRow label="Tipo" value={profile.vehicle?.type} />
+      <Card title="MOTO">
         <InfoRow label="Marca y modelo" value={profile.vehicle?.brandModel} />
         <InfoRow label="Patente" value={profile.vehicle?.plate} />
       </Card>
@@ -29,8 +28,8 @@ export default function ProfileScreen({ onEdit }) {
       <Card title="SEGUROS">
         <InfoRow label="Seguro de vida" value={insuranceText(profile.lifeInsurance)} />
         {profile.lifeInsurance?.policy ? <InfoRow label="Póliza (vida)" value={profile.lifeInsurance.policy} /> : null}
-        <InfoRow label="Seguro del vehículo" value={insuranceText(profile.vehicleInsurance)} />
-        {profile.vehicleInsurance?.policy ? <InfoRow label="Póliza (vehículo)" value={profile.vehicleInsurance.policy} /> : null}
+        <InfoRow label="Seguro de la moto" value={insuranceText(profile.vehicleInsurance)} />
+        {profile.vehicleInsurance?.policy ? <InfoRow label="Póliza (moto)" value={profile.vehicleInsurance.policy} /> : null}
       </Card>
 
       <Card title="CONTACTO DE EMERGENCIA">

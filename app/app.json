@@ -2,7 +2,7 @@
   "expo": {
     "name": "Charvis",
     "slug": "charvis",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "dark",
@@ -34,6 +34,18 @@
           "bluetoothAlwaysPermission": "Charvis usa Bluetooth para conectarse al sensor del casco."
         }
       ]
-    ]
+    ],
+    "owner": "agustinaazanis000",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/aa1bc47c-63f4-4633-883c-ee3666b283e6"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "aa1bc47c-63f4-4633-883c-ee3666b283e6"
+      }
+    }
   }
 }

@@ -147,6 +147,21 @@ una app de desarrollo:
   Para un `.apk` que funcione solo, sin la computadora: `--profile preview`.
 - **iPhone**: `npx expo run:ios` (requiere una Mac con Xcode) o EAS con `--platform ios`.
 
+### Actualizar la app sin volver a armarla
+
+Los cambios de código (pantallas, textos, lógica) se envían al celular en un par de minutos,
+sin esperar la fila de compilación:
+
+```bash
+cd app
+set EAS_NO_VCS=1
+npx eas-cli@latest update --channel preview --message "Descripción del cambio"
+```
+
+La app descarga la actualización al abrirse y la aplica la **siguiente vez** que se abre
+(cerrarla del todo y volver a abrirla). Solo hace falta volver a armar el `.apk` si se
+agregan librerías nativas o se cambia la `version` de `app.json`.
+
 ### Uso
 
 1. Encender el casco (conectar el power bank).

@@ -2,10 +2,13 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { PermissionsAndroid, Platform } from 'react-native';
 import { BleManager, State } from 'react-native-ble-plx';
 
-// Deben coincidir con firmware/charvis_casco/charvis_casco.ino
+// Deben coincidir con el firmware del ESP32 (carpeta firmware/)
 export const DEVICE_NAME = 'CHARVIS-CASCO';
 export const SERVICE_UUID = '6e8a0001-4b1d-4c7a-9f2e-63a1c5d0b7e1';
 export const DISTANCE_CHAR_UUID = '6e8a0002-4b1d-4c7a-9f2e-63a1c5d0b7e1';
+// Característica de comandos de texto ("play", "sonido on", ...). Solo existe
+// en firmware/charvis_casco_ultrasonico (el casco con DFPlayer y parlante).
+export const COMMAND_CHAR_UUID = '6e8a0003-4b1d-4c7a-9f2e-63a1c5d0b7e1';
 
 export const SensorStatus = { CLEAR: 0, ALERT: 1, SENSOR_ERROR: 2 };
 
@@ -153,5 +156,17 @@ export function useHelmetSensor({ onAlert } = {}) {
     deviceRef.current?.cancelConnection().catch(() => {});
   }, []);
 
-  return { connection, reading, error, connect: startScan, disconnect };
+  // Envía un comando de texto al casco. Devuelve false si no se pudo.
+  const sendCommand = useCallback(async (text) => {
+    const d = deviceRef.current;
+    if (!d) return false;
+    try {
+      await d.writeCharacteristicWithResponseForService(SERVICE_UUID, COMMAND_CHAR_UUID, btoa(text));
+      return true;
+    } catch {
+      return false;
+    }
+  }, []);
+
+  return { connection, reading, error, connect: startScan, disconnect, sendCommand };
 }

@@ -13,5 +13,6 @@ export function useHelmetSensor() {
     error,
     connect: () => setError('La conexión con el casco solo funciona en la app instalada en un celular Android.'),
     disconnect: () => {},
+    sendCommand: async () => false,
   };
 }

@@ -11,8 +11,11 @@
  * Cada 200 ms envía 3 bytes:
  *   byte 0-1: distancia en milímetros (uint16, little-endian; 0 = sin eco)
  *   byte 2  : estado (0 = libre, 1 = ALERTA)
- * La app dice "No se dé vuelta: vehículo detectado a menos de 2 metros."
- * y el DFPlayer también reproduce su pista por el parlante del casco.
+ * Ante una alerta, el DFPlayer reproduce por el parlante del casco la pista 1
+ * de la tarjeta SD: "No se dé vuelta: vehículo detectado a menos de 2 metros."
+ * Tarjeta SD: formateada en FAT32, con un único archivo llamado 0001.mp3.
+ * Desde la app se elige si el aviso suena en el casco ("sonido on") o en el
+ * celular ("sonido off"), y el botón "Probar voz" envía "play".
  *
  * Comandos (por el Monitor serie a 115200, o escribiendo en la característica
  * de comandos por BLE): sonido on | sonido off | vol 0-30 | dist 5-400 |
